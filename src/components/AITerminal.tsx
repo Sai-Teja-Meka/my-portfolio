@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, X, Minimize2, Send, Cpu, Search } from 'lucide-react';
+import { Terminal, X, Minimize2, Send, Cpu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PERSONAL_INFO, SKILLS, PROJECTS, EXPERIENCE } from '@/lib/data';
 
@@ -204,3 +204,4 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
     </>
   );
 }
+
