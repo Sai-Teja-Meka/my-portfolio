@@ -1,11 +1,15 @@
-// src/components/AITerminal.tsx
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, X, Minimize2, Send, Cpu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PERSONAL_INFO, SKILLS, PROJECTS } from '@/lib/data';
 
-export function AITerminal() {
+interface AITerminalProps {
+  externalOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<{role: 'user' | 'ai', content: string}[]>([
@@ -13,9 +17,21 @@ export function AITerminal() {
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  // Sync external open state (from Hero button) to internal state
+  useEffect(() => {
+    if (externalOpen) {
+      setIsOpen(true);
+    }
+  }, [externalOpen]);
+
   useEffect(() => {
     if (bottomRef.current) bottomRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [history, isOpen]);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    if (onClose) onClose(); // Reset parent state
+  };
 
   const handleCommand = (cmd: string) => {
     const lowerCmd = cmd.toLowerCase();
@@ -77,8 +93,8 @@ export function AITerminal() {
                 <span className="font-bold tracking-wider">DEEP_BLUE_V1.0</span>
               </div>
               <div className="flex items-center gap-2">
-                <button onClick={() => setIsOpen(false)} className="text-primary/70 hover:text-primary"><Minimize2 className="w-4 h-4" /></button>
-                <button onClick={() => setIsOpen(false)} className="text-primary/70 hover:text-destructive"><X className="w-4 h-4" /></button>
+                <button onClick={handleClose} className="text-primary/70 hover:text-primary"><Minimize2 className="w-4 h-4" /></button>
+                <button onClick={handleClose} className="text-primary/70 hover:text-destructive"><X className="w-4 h-4" /></button>
               </div>
             </div>
 
