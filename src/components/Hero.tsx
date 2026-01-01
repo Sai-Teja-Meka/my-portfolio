@@ -9,7 +9,7 @@ interface HeroProps {
 export function Hero({ onOpenContact }: HeroProps) {
   const nameParts = PERSONAL_INFO.name.split(' ');
   const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' '); // "Teja Meka"
+  const lastName = nameParts.slice(1).join(' '); 
 
   return (
     <section className="min-h-screen flex flex-col justify-center px-6 md:px-20 pt-20 relative overflow-hidden">
@@ -67,16 +67,15 @@ export function Hero({ onOpenContact }: HeroProps) {
             <span>GitHub</span>
           </a>
           
-          {/* Contact Button - Now triggers Terminal/Alert */}
+          {/* Contact Button - Now correctly triggers the parent handler */}
           <button 
-            onClick={() => alert(`Contact Channel Open:\nEmail: ${PERSONAL_INFO.email}\nLocation: ${PERSONAL_INFO.location}`)} 
+            onClick={onOpenContact} 
             className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded hover:border-primary hover:bg-primary/10 transition-all group text-white"
           >
             <Mail className="w-5 h-5 group-hover:text-primary transition-colors" />
             <span>Contact</span>
           </button>
 
-          {/* Resume Button - Now creates a download */}
           <a 
             href="/resume.pdf" 
             download="Sai_Teja_Resume.pdf"
@@ -94,7 +93,6 @@ export function Hero({ onOpenContact }: HeroProps) {
           {SKILLS.flatMap(s => s.items).map((skill, i) => (
              <span key={i} className="mx-4 text-primary">★ {skill}</span>
           ))}
-          {/* Duplicate for infinite scroll */}
           {SKILLS.flatMap(s => s.items).map((skill, i) => (
              <span key={`dup-${i}`} className="mx-4 text-primary">★ {skill}</span>
           ))}
