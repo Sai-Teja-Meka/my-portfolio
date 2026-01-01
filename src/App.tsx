@@ -63,12 +63,10 @@ function App() {
       />
 
       {/* AI Terminal (Contact Panel) */}
-      {/* We pass a prop to force it open if needed, or manage it via the existing component state. 
-          For now, we render it normally, but ideally, you'd pass an 'isOpen' prop if you modified AITerminal. 
-          *Correction*: We will control it via a key to reset or specific props if AITerminal supports it.
-          For this fix, we will assume AITerminal manages its own state, so we just render it. 
-      */}
-      <AITerminal /> 
+      <AITerminal 
+        externalOpen={isTerminalOpen} 
+        onClose={() => setIsTerminalOpen(false)} 
+      /> 
     </div>
   );
 }
