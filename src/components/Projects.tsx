@@ -26,11 +26,11 @@ export function Projects({ onSelect }: ProjectsProps) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            onClick={() => onSelect(project)} // <--- Triggers global modal
+            onClick={() => onSelect(project)}
             className="group relative bg-card/50 border border-white/5 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-500 cursor-pointer"
           >
-            {/* ... (Keep existing styling content) ... */}
             <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Maximize2 className="w-5 h-5 text-primary" />
             </div>
@@ -40,9 +40,32 @@ export function Projects({ onSelect }: ProjectsProps) {
                 <span className="text-primary text-xs font-mono border border-primary/20 px-2 py-1 rounded">
                   {project.category}
                 </span>
+                
+                {/* NEW CONDITIONAL LINK SECTION */}
                 <div className="flex gap-2 z-10" onClick={(e) => e.stopPropagation()}>
-                  <a href={project.link} className="hover:text-white text-muted-foreground transition-colors"><Github className="w-5 h-5" /></a>
-                  <a href={project.link} className="hover:text-primary text-muted-foreground transition-colors"><ExternalLink className="w-5 h-5" /></a>
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-white text-muted-foreground transition-colors"
+                      title="View Source Code"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                  )}
+                  
+                  {project.demoUrl && (
+                    <a 
+                      href={project.demoUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-primary text-muted-foreground transition-colors"
+                      title="View Live Demo"
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
 
