@@ -51,7 +51,8 @@ export const PROJECTS = [
     category: "AI Safety",
     description: "Agent-driven workflow for content classification achieving 85%+ consistency with human review using Few-Shot prompting.",
     tech: ["OpenAI GPT-4", "LangChain", "Streamlit"],
-    link: "#",
+    githubUrl: "https://github.com/Sai-Teja-Meka/Content_Moderator-Guardian-AI-",
+    demoUrl: "https://contentmoderator.streamlit.app/",
     featured: true
   },
   {
@@ -78,4 +79,5 @@ export const PROJECTS = [
     link: "#",
     featured: false
   }
+
 ];
