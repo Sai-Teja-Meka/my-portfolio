@@ -56,11 +56,13 @@ export const PROJECTS = [
     featured: true
   },
   {
-    title: "Deep Blue Agent",
-    category: "AI Persona",
-    description: "A personalized AI agent interface that synthesizes knowledge from user input and operates across local and cloud environments.",
-    tech: ["Python", "REST APIs", "Dynamic Context"],
-    link: "#",
+    title: "Deep Blue AI Platform", // Updated Title
+    category: "Multi-Agent System", // Updated Category
+    // synthesized the bullet points into a strong paragraph
+    description: "Architected a production-grade multi-agent orchestration system coordinating 5+ specialized agents (research, email, coding) via sophisticated routing. Engineered a RAG-powered memory system with ChromaDB for context-aware responses across unlimited threads. The full-stack solution features a FastAPI backend (JWT, rate-limiting), Next.js frontend with real-time streaming, voice input, and file processing.",
+    tech: ["FastAPI", "Next.js", "OpenAI", "ChromaDB", "RAG", "Python"], // Updated Tech Stack
+    githubUrl: "#", // Add your actual link here
+    demoUrl: "#",   // Add your actual link here
     featured: true
   },
   {
@@ -81,3 +83,4 @@ export const PROJECTS = [
   }
 
 ];
+
