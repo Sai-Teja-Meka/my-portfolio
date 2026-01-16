@@ -1,4 +1,4 @@
-import { Brain, Database, Globe, Cpu, Cloud, Layers } from "lucide-react";
+import { Brain, Database, Cpu, Cloud } from "lucide-react";
 
 export const PERSONAL_INFO = {
   name: "Sai Teja Meka",
@@ -97,3 +97,4 @@ export const PROJECTS = [
     featured: false
   }
 ];
+
