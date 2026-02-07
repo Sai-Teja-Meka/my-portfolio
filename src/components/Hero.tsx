@@ -77,7 +77,7 @@ export function Hero({ onOpenContact }: HeroProps) {
           </button>
 
           <a 
-            href="./Resume.pdf" 
+            href="/Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf" 
             download="Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf"
             className="flex items-center gap-2 px-6 py-3 bg-primary text-black font-bold rounded hover:bg-cyan-300 transition-all"
           >
@@ -101,6 +101,7 @@ export function Hero({ onOpenContact }: HeroProps) {
     </section>
   );
 }
+
 
 
 
