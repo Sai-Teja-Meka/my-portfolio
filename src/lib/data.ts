@@ -1,4 +1,4 @@
-import { Brain, Database, Cpu, Cloud, Layers, Code } from "lucide-react";
+import { Brain, Database, Cpu, Cloud } from "lucide-react";
 
 export const PERSONAL_INFO = {
   name: "Sai Teja Meka",
@@ -67,8 +67,8 @@ export const PROJECTS = [
     category: "LLM Observability",
     description: "Event-sourced observability platform capturing step-level traces (tool calls, errors). Features a React Flow DAG UI with time-travel debugging (rewind/fork states) and live updates via SSE. Deployed on AWS EC2.",
     tech: ["FastAPI", "React Flow", "Event Sourcing", "AWS EC2", "PostgreSQL"],
-    githubUrl: "#", // Update with actual link if available
-    demoUrl: "#",   // Update with actual link if available
+    githubUrl: "#", 
+    demoUrl: "#",   
     featured: true
   },
   {
