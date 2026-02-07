@@ -67,8 +67,8 @@ export const PROJECTS = [
     category: "LLM Observability",
     description: "Event-sourced observability platform capturing step-level traces (tool calls, errors). Features a React Flow DAG UI with time-travel debugging (rewind/fork states) and live updates via SSE. Deployed on AWS EC2.",
     tech: ["FastAPI", "React Flow", "Event Sourcing", "AWS EC2", "PostgreSQL"],
-    githubUrl: "#", 
-    demoUrl: "#",   
+    githubUrl: "https://github.com/Sai-Teja-Meka/Chronos", 
+    demoUrl: "https://chronos-chi-eight.vercel.app/",   
     featured: true
   },
   {
@@ -76,8 +76,8 @@ export const PROJECTS = [
     category: "Cognitive AI",
     description: "Cognitive architecture extraction engine creating synthetic expert personas. Engineered a hybrid memory system (ChromaDB + Neo4j) achieving sub-200ms retrieval and personality drift detection.",
     tech: ["FastAPI", "Neo4j", "ChromaDB", "Big Five Model", "WebSockets"],
-    githubUrl: "#",
-    demoUrl: "#",
+    githubUrl: "https://github.com/Sai-Teja-Meka/Agent-Persona-Engine",
+    demoUrl: "https://agent-persona-engine.vercel.app/",
     featured: true
   },
   {
@@ -94,7 +94,9 @@ export const PROJECTS = [
     category: "Creative Engineering",
     description: "Immersive 3D portfolio using React Three Fiber with custom GLSL shaders and GPU particle systems. Integrated a Groq-powered AI terminal for natural language Q&A about my skills and experience.",
     tech: ["React Three Fiber", "GLSL", "Groq API", "Zustand"],
-    link: "#",
+    githubUrl: "https://github.com/Sai-Teja-Meka/Advanced_UI",
+    demoUrl: "https://advanced-ui-iota.vercel.app/",
     featured: false
   }
 ];
+
