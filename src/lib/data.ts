@@ -1,6 +1,62 @@
 import { Brain, Database, Cpu, Cloud } from "lucide-react";
 
-export const PERSONAL_INFO = {
+// ============================================
+// TYPE DEFINITIONS - System-Wide Contracts
+// ============================================
+
+export interface PersonalInfo {
+  name: string;
+  role: string;
+  location: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  bio: string;
+  status: string;
+}
+
+export interface SkillCategory {
+  category: string;
+  icon: typeof Brain;
+  items: string[];
+}
+
+export interface ExperienceItem {
+  id: number;
+  year: string;
+  title: string;
+  company: string;
+  description: string;
+  tech: string[];
+}
+
+export interface ProjectItem {
+  title: string;
+  category: string;
+  description: string;
+  tech: string[];
+  githubUrl?: string;
+  demoUrl?: string;
+  featured: boolean;
+  imageUrl?: string;
+}
+
+// Normalized type for Modal consumption
+export interface ModalData {
+  title: string;
+  year: string;
+  description: string;
+  techStack: string[];
+  imageUrl?: string;
+  // Allow source tracking for debugging
+  _source?: 'experience' | 'project';
+}
+
+// ============================================
+// DATA EXPORTS
+// ============================================
+
+export const PERSONAL_INFO: PersonalInfo = {
   name: "Sai Teja Meka",
   role: "AI Product Engineer",
   location: "New Jersey, USA",
@@ -11,7 +67,7 @@ export const PERSONAL_INFO = {
   status: "Open to Work • AWS Certified AI Practitioner"
 };
 
-export const SKILLS = [
+export const SKILLS: SkillCategory[] = [
   {
     category: "AI & Agents",
     icon: Brain,
@@ -34,7 +90,7 @@ export const SKILLS = [
   },
 ];
 
-export const EXPERIENCE = [
+export const EXPERIENCE: ExperienceItem[] = [
   {
     id: 1,
     year: "Sep 2025 - Present",
@@ -61,14 +117,15 @@ export const EXPERIENCE = [
   }
 ];
 
-export const PROJECTS = [
+export const PROJECTS: ProjectItem[] = [
   {
     title: "Chronos: LLM Time-Travel Debugger",
     category: "LLM Observability",
     description: "Event-sourced observability platform capturing step-level traces (tool calls, errors). Features a React Flow DAG UI with time-travel debugging (rewind/fork states) and live updates via SSE. Deployed on AWS EC2.",
     tech: ["FastAPI", "React Flow", "Event Sourcing", "AWS EC2", "PostgreSQL"],
-    githubUrl: "https://github.com/Sai-Teja-Meka/Chronos", 
-    demoUrl: "https://chronos-chi-eight.vercel.app/",   
+    githubUrl: "https://github.com/Sai-Teja-Meka/Chronos",
+    demoUrl: "https://chronos-chi-eight.vercel.app/",
+    imageUrl: "/assets/chronos-preview.gif", // Added image
     featured: true
   },
   {
@@ -78,6 +135,7 @@ export const PROJECTS = [
     tech: ["FastAPI", "Neo4j", "ChromaDB", "Big Five Model", "WebSockets"],
     githubUrl: "https://github.com/Sai-Teja-Meka/Agent-Persona-Engine",
     demoUrl: "https://agent-persona-engine.vercel.app/",
+    imageUrl: "https://raw.githubusercontent.com/Sai-Teja-Meka/Agent-Persona-Engine/main/preview.png", // Added image
     featured: true
   },
   {
@@ -100,3 +158,39 @@ export const PROJECTS = [
   }
 ];
 
+// ============================================
+// TYPE GUARDS - Runtime Type Checking
+// ============================================
+
+export function isExperienceItem(item: any): item is ExperienceItem {
+  return item && typeof item === 'object' && 'company' in item && 'id' in item;
+}
+
+export function isProjectItem(item: any): item is ProjectItem {
+  return item && typeof item === 'object' && 'category' in item && !('company' in item);
+}
+
+// ============================================
+// DATA TRANSFORMERS - Normalize for Modal
+// ============================================
+
+export function toModalData(item: ExperienceItem | ProjectItem): ModalData {
+  if (isExperienceItem(item)) {
+    return {
+      title: item.title,
+      year: item.year,
+      description: `${item.company} • ${item.description}`,
+      techStack: item.tech,
+      _source: 'experience'
+    };
+  } else {
+    return {
+      title: item.title,
+      year: "2025", // Projects default to current year
+      description: item.description,
+      techStack: item.tech,
+      imageUrl: item.imageUrl,
+      _source: 'project'
+    };
+  }
+}

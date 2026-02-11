@@ -14,7 +14,6 @@ export function StarfieldBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Ensure alpha is true for transparency
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
@@ -51,23 +50,17 @@ export function StarfieldBackground() {
     resize();
 
     const animate = () => {
-      // Use clearRect to keep the background transparent
       ctx.clearRect(0, 0, width, height);
 
-      // Calculate scroll percentage to adjust speed
       const scrollPct = window.scrollY / (document.body.scrollHeight - window.innerHeight || 1);
-      
-      // Speed increases as user scrolls down
-      const targetSpeed = speedBase + (scrollPct * 20); 
+      const targetSpeed = speedBase + (scrollPct * 20);
       speedMult += (targetSpeed - speedMult) * 0.1;
 
       for (let i = 0; i < numStars; i++) {
         const star = stars[i];
-        
-        // Move star closer (decrease Z)
+
         star.z -= speedMult;
 
-        // Reset star if it passes the camera
         if (star.z <= 0) {
           star.z = 1000;
           star.pz = 1000;
@@ -75,7 +68,6 @@ export function StarfieldBackground() {
           star.y = Math.random() * 2000 - 1000;
         }
 
-        // Project 3D coordinates to 2D screen
         const x = cx + (star.x / star.z) * width;
         const y = cy + (star.y / star.z) * height;
 
@@ -84,7 +76,6 @@ export function StarfieldBackground() {
 
         star.pz = star.z;
 
-        // Draw star trail
         if (x >= 0 && x <= width && y >= 0 && y <= height) {
           const alpha = (1 - star.z / 1000);
           const size = (1 - star.z / 1000) * 2.5;
@@ -114,7 +105,8 @@ export function StarfieldBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 1 }} // Explicitly set Z-Index to 1
+      style={{ zIndex: 1 }}
+      aria-hidden="true"
     />
   );
 }

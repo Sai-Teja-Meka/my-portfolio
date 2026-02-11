@@ -19,14 +19,14 @@ export function Hero({ onOpenContact }: HeroProps) {
 
   return (
     <section className="min-h-screen flex flex-col justify-center px-6 md:px-20 pt-20 relative overflow-hidden">
-
+      
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-
+      
       <div className="z-10 max-w-7xl w-full flex flex-col md:flex-row items-center md:items-start gap-12">
-
+        
         {/* TEXT CONTENT (Left Side) */}
         <div className="flex-1 order-2 md:order-1">
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -36,7 +36,7 @@ export function Hero({ onOpenContact }: HeroProps) {
             <span className="text-primary font-mono text-sm tracking-widest uppercase">{PERSONAL_INFO.status}</span>
           </motion.div>
 
-          <motion.h1
+          <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -48,7 +48,7 @@ export function Hero({ onOpenContact }: HeroProps) {
             </span>
           </motion.h1>
 
-          <motion.p
+          <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -60,7 +60,7 @@ export function Hero({ onOpenContact }: HeroProps) {
             </span>
           </motion.p>
 
-          <motion.div
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
@@ -74,17 +74,17 @@ export function Hero({ onOpenContact }: HeroProps) {
               <Github className="w-5 h-5 group-hover:text-primary transition-colors" />
               <span>GitHub</span>
             </a>
-
-            <button
-              onClick={onOpenContact}
+            
+            <button 
+              onClick={onOpenContact} 
               className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded hover:border-primary hover:bg-primary/10 transition-all group text-white"
             >
               <Mail className="w-5 h-5 group-hover:text-primary transition-colors" />
               <span>Contact</span>
             </button>
 
-            <a
-              href="/Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf"
+            <a 
+              href="/Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf" 
               download="Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf"
               className="flex items-center gap-2 px-6 py-3 bg-primary text-black font-bold rounded hover:bg-cyan-300 transition-all"
             >
@@ -103,7 +103,7 @@ export function Hero({ onOpenContact }: HeroProps) {
       <div className="absolute bottom-10 left-0 right-0 border-t border-white/5 py-4 overflow-hidden">
         <div className="flex gap-8 animate-scroll-left opacity-30 font-mono text-sm whitespace-nowrap">
           {SKILLS.flatMap(s => s.items).map((skill, i) => (
-            <span key={i} className="mx-4 text-primary">★ {skill}</span>
+             <span key={i} className="mx-4 text-primary">★ {skill}</span>
           ))}
         </div>
       </div>

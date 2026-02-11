@@ -1,5 +1,31 @@
 @import "tailwindcss";
+/* Hide default cursor to use custom one */
+@media (min-width: 768px) {
 
+  body,
+  a,
+  button,
+  input {
+    cursor: none !important;
+  }
+}
+
+/* Ensure smooth scroll container behaves */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
 @theme {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -39,30 +65,48 @@
   --font-sans: 'Roboto Mono', monospace;
 
   --radius: 0.5rem;
-  
+
   --animate-scroll-down: scroll-down 2s infinite;
   --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
   --animate-scroll-left: scroll-left 30s linear infinite;
 
   @keyframes scroll-down {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(10px); opacity: 0; }
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
   }
 
   @keyframes fade-in-up {
-    0% { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   @keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
   }
 }
 
 :root {
-  /* Professional Deep Space Theme */
-  --background: 222 47% 4%; /* Darker, more serious black */
+  --background: 222 47% 4%;
   --foreground: 210 40% 98%;
 
   --card: 222 47% 6%;
@@ -71,10 +115,10 @@
   --popover: 222 47% 8%;
   --popover-foreground: 210 40% 98%;
 
-  --primary: 190 100% 50%; /* Cyan - Tech standard */
+  --primary: 190 100% 50%;
   --primary-foreground: 222 47% 4%;
 
-  --secondary: 260 80% 65%; /* Deep Purple - AI/Intelligence */
+  --secondary: 260 80% 65%;
   --secondary-foreground: 210 40% 98%;
 
   --muted: 217 33% 15%;
@@ -99,7 +143,6 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Professional Glassmorphism */
 .glass-panel {
   background: rgba(10, 15, 25, 0.7);
   backdrop-filter: blur(20px);
@@ -112,26 +155,27 @@ body {
   text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
 
-/* Subtle Nebula */
 .bg-nebula {
   background-color: #050a14;
-  background-image: 
+  background-image:
     radial-gradient(at 10% 10%, rgba(100, 50, 200, 0.08) 0px, transparent 50%),
     radial-gradient(at 90% 90%, rgba(0, 200, 255, 0.08) 0px, transparent 50%);
   background-attachment: fixed;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0b0d14; 
+  background: #0b0d14;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #1e293b; 
+  background: #1e293b;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ffff; 
+  background: #00ffff;
 }
