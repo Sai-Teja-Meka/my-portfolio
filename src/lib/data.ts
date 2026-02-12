@@ -145,6 +145,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ["GPT-4", "Claude", "LangChain", "Scikit-learn"],
     githubUrl: "https://github.com/Sai-Teja-Meka/Content_Moderator-Guardian-AI-",
     demoUrl: "https://contentmoderator.streamlit.app/",
+    imageUrl: "https://raw.githubusercontent.com/Sai-Teja-Meka/Agent-Persona-Engine/main/preview.png", // Added image
     featured: true
   },
   {
@@ -154,6 +155,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ["React Three Fiber", "GLSL", "Groq API", "Zustand"],
     githubUrl: "https://github.com/Sai-Teja-Meka/Advanced_UI",
     demoUrl: "https://advanced-ui-iota.vercel.app/",
+    imageUrl: "https://raw.githubusercontent.com/Sai-Teja-Meka/Agent-Persona-Engine/main/preview.png", // Added image
     featured: false
   }
 ];
