@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, FileDown } from 'lucide-react';
 import { PERSONAL_INFO, SKILLS } from '@/lib/data';
 import { ProfileImage } from './ProfileImage';
+import { TextScramble } from './TextScramble';
 
 interface HeroProps {
   onOpenContact: () => void;
@@ -13,54 +14,57 @@ export function Hero({ onOpenContact }: HeroProps) {
   const lastName = nameParts.slice(1).join(' ');
   const profileImage = "https://github.com/Sai-Teja-Meka.png";
 
-  // 🔥 CHANGE THIS TO TEST DIFFERENT VARIANTS 🔥
-  // Options: 'wormhole' | 'infinity' | 'neural' | 'quantum' | 'liquid' | 'particle' | 'original'
+  // Change this to test different variants
   const currentVariant: 'wormhole' | 'infinity' | 'neural' | 'quantum' | 'liquid' | 'particle' | 'original' = 'wormhole';
 
   return (
     <section className="min-h-screen flex flex-col justify-center px-6 md:px-20 pt-20 relative overflow-hidden">
-      
+
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-      
+
       <div className="z-10 max-w-7xl w-full flex flex-col md:flex-row items-center md:items-start gap-12">
-        
+
         {/* TEXT CONTENT (Left Side) */}
         <div className="flex-1 order-2 md:order-1">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="flex items-center gap-3 mb-6"
           >
             <div className="h-[1px] w-12 bg-primary" />
-            <span className="text-primary font-mono text-sm tracking-widest uppercase">{PERSONAL_INFO.status}</span>
+            <span className="text-primary font-mono text-sm tracking-widest uppercase">
+              <TextScramble text={PERSONAL_INFO.status} delay={300} scrambleSpeed={30} />
+            </span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-5xl md:text-8xl font-display font-black mb-6 tracking-tight leading-none text-white"
           >
-            {firstName} <br />
+            <TextScramble text={firstName} delay={500} scrambleSpeed={40} revealSpeed={60} />
+            <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
-              {lastName}
+              <TextScramble text={lastName} delay={800} scrambleSpeed={40} revealSpeed={60} />
             </span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-lg md:text-2xl text-muted-foreground font-light max-w-2xl leading-relaxed mb-10"
           >
-            {PERSONAL_INFO.role}. <br />
+            <TextScramble text={PERSONAL_INFO.role} delay={1200} scrambleSpeed={20} />
+            <br />
             <span className="text-sm md:text-base opacity-70 font-mono mt-2 block">
               {PERSONAL_INFO.bio}
             </span>
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
@@ -74,17 +78,17 @@ export function Hero({ onOpenContact }: HeroProps) {
               <Github className="w-5 h-5 group-hover:text-primary transition-colors" />
               <span>GitHub</span>
             </a>
-            
-            <button 
-              onClick={onOpenContact} 
+
+            <button
+              onClick={onOpenContact}
               className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded hover:border-primary hover:bg-primary/10 transition-all group text-white"
             >
               <Mail className="w-5 h-5 group-hover:text-primary transition-colors" />
               <span>Contact</span>
             </button>
 
-            <a 
-              href="/Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf" 
+            <a
+              href="/Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf"
               download="Sai_Teja_Meka_Resume_AI_Product_Engineer.pdf"
               className="flex items-center gap-2 px-6 py-3 bg-primary text-black font-bold rounded hover:bg-cyan-300 transition-all"
             >
@@ -94,7 +98,7 @@ export function Hero({ onOpenContact }: HeroProps) {
           </motion.div>
         </div>
 
-        {/* PROFILE IMAGE (Right Side) - NOW WITH VARIANTS */}
+        {/* PROFILE IMAGE (Right Side) */}
         <ProfileImage variant={currentVariant} profileImage={profileImage} />
 
       </div>
@@ -103,7 +107,7 @@ export function Hero({ onOpenContact }: HeroProps) {
       <div className="absolute bottom-10 left-0 right-0 border-t border-white/5 py-4 overflow-hidden">
         <div className="flex gap-8 animate-scroll-left opacity-30 font-mono text-sm whitespace-nowrap">
           {SKILLS.flatMap(s => s.items).map((skill, i) => (
-             <span key={i} className="mx-4 text-primary">★ {skill}</span>
+            <span key={i} className="mx-4 text-primary">★ {skill}</span>
           ))}
         </div>
       </div>

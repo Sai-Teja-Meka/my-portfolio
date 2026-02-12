@@ -1,9 +1,9 @@
 import { TimelineNode } from './TimelineNode';
 import { EXPERIENCE } from '@/lib/data';
-import type{ ExperienceItem } from '@/lib/data';
+import { ViewportAware } from './ViewportAware';
 
 interface TimelineProps {
-  onSelect: (item: ExperienceItem) => void;
+  onSelect: (item: any) => void;
 }
 
 export function Timeline({ onSelect }: TimelineProps) {
@@ -14,16 +14,17 @@ export function Timeline({ onSelect }: TimelineProps) {
 
       <div className="relative z-10 flex flex-col gap-8">
         {EXPERIENCE.map((item, index) => (
-          <TimelineNode
-            key={item.id}
-            year={item.year}
-            title={item.title}
-            description={`${item.company} • ${item.description}`}
-            side={index % 2 === 0 ? 'left' : 'right'}
-            techStack={item.tech}
-            index={index}
-            onClick={() => onSelect(item)}
-          />
+          <ViewportAware key={item.id} animationType="parallax" once={true}>
+            <TimelineNode 
+              year={item.year}
+              title={item.title}
+              description={`${item.company} • ${item.description}`}
+              side={index % 2 === 0 ? 'left' : 'right'}
+              techStack={item.tech}
+              index={index}
+              onClick={() => onSelect(item)}
+            />
+          </ViewportAware>
         ))}
       </div>
     </div>
