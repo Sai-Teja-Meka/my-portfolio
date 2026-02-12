@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/Sai-Teja-Meka/my-portfolio/main/public/vite.svg" alt="Portfolio Logo" width="25%"/>
   <br><br>
-  <img src="https://github.com/Sai-Teja-Meka/my-portfolio/actions/workflows/ci.yml/badge.svg" alt="CI Status">
 </p>
 
 <p align="center">
