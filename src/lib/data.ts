@@ -1,4 +1,4 @@
-import { Brain, Database, Cpu, Cloud, Trophy, GraduationCap, Award } from "lucide-react";
+import { Brain, Database, Cpu, Cloud } from "lucide-react";
 
 // ============================================
 // TYPE DEFINITIONS - System-Wide Contracts
