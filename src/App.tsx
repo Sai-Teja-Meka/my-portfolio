@@ -6,6 +6,8 @@ import { ScrollProgress } from '@/components/ScrollProgress';
 import { Timeline } from '@/components/Timeline';
 import { Hero } from '@/components/Hero';
 import { Projects } from '@/components/Projects';
+import { Hackathons } from '@/components/Hackathons';
+import { EducationCerts } from '@/components/EducationCerts';
 import { ProjectModal } from '@/components/ProjectModal';
 import { AITerminal } from '@/components/AITerminal';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
@@ -59,6 +61,14 @@ function App() {
         </div>
 
         <Projects onSelect={openModal} />
+
+        <div className="border-t border-white/5">
+          <Hackathons />
+        </div>
+
+        <div className="border-t border-white/5 bg-black/20 backdrop-blur-sm">
+          <EducationCerts />
+        </div>
 
         <footer className="py-10 text-center text-muted-foreground text-xs relative border-t border-t-white/5 mt-20 font-mono uppercase tracking-widest bg-black">
           <p>© 2025 Sai Teja Meka. Engineered with React & Three.js.</p>

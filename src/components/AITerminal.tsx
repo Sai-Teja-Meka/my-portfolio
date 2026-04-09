@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, X, Minimize2, Send, Cpu } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { PERSONAL_INFO, SKILLS, PROJECTS, EXPERIENCE } from '@/lib/data';
+import { PERSONAL_INFO, SKILLS, PROJECTS, EXPERIENCE, HACKATHONS, EDUCATION, CERTIFICATIONS } from '@/lib/data';
 
 interface AITerminalProps {
   externalOpen?: boolean;
@@ -13,11 +13,10 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
 
-  // Clean initial state
   const [history, setHistory] = useState<{ role: 'user' | 'ai', content: string }[]>([
     {
       role: 'ai',
-      content: `> SYSTEM ONLINE\n\nHello. I am the portfolio assistant. \n\nTry typing:\n• "skills" to see what I can do\n• "projects" to see my work\n• "contact" to hire me\n• Or search any keyword (e.g. "React", "AI")`
+      content: `> SYSTEM ONLINE\n\nHello. I am the portfolio assistant. \n\nTry typing:\n• "skills" to see what I can do\n• "projects" to see my work\n• "hackathons" to see competitions\n• "education" for academic background\n• "contact" to hire me\n• Or search any keyword (e.g. "React", "LoRA")`
     }
   ]);
 
@@ -40,10 +39,8 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
     const lowerCmd = cmd.toLowerCase().trim();
     let response = "Access denied. Command not recognized. Try 'help', 'skills', or search a keyword.";
 
-    // INTELLIGENT COMMAND PROCESSOR
-
     if (['help', 'ls', 'menu', 'options'].includes(lowerCmd)) {
-      response = `>> AVAILABLE COMMANDS <<\n\n• skills      : List technical capabilities\n• projects    : View project archive\n• experience  : Show work history\n• contact     : Get communication links\n• about       : Executive summary\n• clear       : Clear terminal screen\n• [keyword]   : Search (e.g. 'React', 'PepsiCo')`;
+      response = `>> AVAILABLE COMMANDS <<\n\n• skills        : List technical capabilities\n• projects      : View project archive\n• experience    : Show work history\n• hackathons    : Competition results\n• education     : Academic background\n• certs         : Certifications\n• contact       : Get communication links\n• about         : Executive summary\n• clear         : Clear terminal screen\n• [keyword]     : Search (e.g. 'vLLM', 'PepsiCo')`;
 
     } else if (lowerCmd.includes('about') || lowerCmd.includes('who are you')) {
       response = `>> IDENTITY VERIFIED <<\n\nNAME: ${PERSONAL_INFO.name}\nROLE: ${PERSONAL_INFO.role}\nSTATUS: ${PERSONAL_INFO.status}\n\nBIO: ${PERSONAL_INFO.bio}`;
@@ -60,6 +57,18 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
       const expList = EXPERIENCE.map(e => `[${e.year}] ${e.title} @ ${e.company}`).join('\n');
       response = `>> CAREER TIMELINE <<\n\n${expList}`;
 
+    } else if (lowerCmd.includes('hackathon') || lowerCmd.includes('competition')) {
+      const hackList = HACKATHONS.map(h => `[${h.event}] ${h.title}`).join('\n');
+      response = `>> HACKATHON RECORDS <<\n\n${hackList}`;
+
+    } else if (lowerCmd.includes('education') || lowerCmd.includes('degree') || lowerCmd.includes('university')) {
+      const eduList = EDUCATION.map(e => `[${e.year}] ${e.degree}\n  ${e.institution}, ${e.location}`).join('\n\n');
+      response = `>> ACADEMIC RECORDS <<\n\n${eduList}`;
+
+    } else if (lowerCmd.includes('cert')) {
+      const certList = CERTIFICATIONS.map(c => `* ${c.title} (${c.issuer}) — ${c.date}`).join('\n');
+      response = `>> CERTIFICATIONS <<\n\n${certList}`;
+
     } else if (lowerCmd.includes('contact') || lowerCmd.includes('email') || lowerCmd.includes('hire')) {
       response = `>> SECURE CHANNEL OPEN <<\n\nEMAIL: ${PERSONAL_INFO.email}\nLINKEDIN: ${PERSONAL_INFO.linkedin}\nGITHUB: ${PERSONAL_INFO.github}`;
 
@@ -71,13 +80,11 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
       // KEYWORD SEARCH ENGINE
       const results = [];
 
-      // Search Skills
       SKILLS.forEach(cat => {
         const matches = cat.items.filter(item => item.toLowerCase().includes(lowerCmd));
         if (matches.length > 0) results.push(`SKILLS MATCHED: ${matches.join(', ')}`);
       });
 
-      // Search Projects
       const matchedProjects = PROJECTS.filter(p =>
         p.title.toLowerCase().includes(lowerCmd) ||
         p.description.toLowerCase().includes(lowerCmd) ||
@@ -87,7 +94,6 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
         results.push(`PROJECTS FOUND:\n${matchedProjects.map(p => `> ${p.title}: ${p.description}`).join('\n')}`);
       }
 
-      // Search Experience
       const matchedExp = EXPERIENCE.filter(e =>
         e.company.toLowerCase().includes(lowerCmd) ||
         e.description.toLowerCase().includes(lowerCmd) ||
@@ -95,6 +101,16 @@ export function AITerminal({ externalOpen = false, onClose }: AITerminalProps) {
       );
       if (matchedExp.length > 0) {
         results.push(`EXPERIENCE FOUND:\n${matchedExp.map(e => `> ${e.company} (${e.title}): ${e.description}`).join('\n')}`);
+      }
+
+      const matchedHacks = HACKATHONS.filter(h =>
+        h.title.toLowerCase().includes(lowerCmd) ||
+        h.event.toLowerCase().includes(lowerCmd) ||
+        h.description.toLowerCase().includes(lowerCmd) ||
+        h.tech.some(t => t.toLowerCase().includes(lowerCmd))
+      );
+      if (matchedHacks.length > 0) {
+        results.push(`HACKATHONS FOUND:\n${matchedHacks.map(h => `> ${h.event}: ${h.title}`).join('\n')}`);
       }
 
       if (results.length > 0) {
