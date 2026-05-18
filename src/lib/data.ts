@@ -177,7 +177,6 @@ export const PROJECTS: ProjectItem[] = [
     description: "Event-sourced LLM observability platform capturing step-level traces (messages, tool calls/results, errors) with time-travel debugging: rewind to any state, fork 'what-if' branches, compare timelines. Interactive conversation DAG UI with live SSE updates in React Flow. Deployed on AWS EC2 with Docker Compose (backend, Postgres, Redis, pgAdmin). Validated on AIMO3 mathematical reasoning benchmarks.",
     tech: ["FastAPI", "React Flow", "Event Sourcing", "AWS EC2", "PostgreSQL", "Docker", "Redis", "SSE"],
     githubUrl: "https://github.com/Sai-Teja-Meka/Chronos",
-    demoUrl: "https://chronos-chi-eight.vercel.app/",
     imageUrl: "/assets/chronos-preview.gif",
     featured: true
   },
@@ -187,7 +186,6 @@ export const PROJECTS: ProjectItem[] = [
     description: "Solo-built cognitive architecture extraction engine creating synthetic expert personas from technical discussions. Extracts 8 layers of cognitive DNA (identity, mental models, reflexes, reasoning chains, Big Five traits). Hybrid memory system (ChromaDB + Neo4j) with sub-200ms retrieval and personality drift detection with autocorrection. Production React frontend with real-time WebSocket streaming and side-by-side persona vs. vanilla GPT comparison.",
     tech: ["FastAPI", "Neo4j", "ChromaDB", "Big Five Model", "WebSockets", "React", "OpenAI API"],
     githubUrl: "https://github.com/Sai-Teja-Meka/Agent-Persona-Engine",
-    demoUrl: "https://agent-persona-engine.vercel.app/",
     imageUrl: "https://raw.githubusercontent.com/Sai-Teja-Meka/Agent-Persona-Engine/main/preview.png",
     featured: true
   },
